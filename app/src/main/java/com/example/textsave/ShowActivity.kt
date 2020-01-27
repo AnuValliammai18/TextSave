@@ -27,7 +27,7 @@ class ShowActivity : AppCompatActivity(),CoroutineScope {
 
         clear_btn.setOnClickListener {
            launch {
-               TextDataBase(this@ShowActivity).getTextDao().clearTable()
+               TextDataBase(this@ShowActivity)!!.getTextDao().clearTable()
            }
             fetchData()
             Snackbar.make(cordinate_layout, "Table Deleted", Snackbar.LENGTH_SHORT).show()
@@ -39,7 +39,7 @@ class ShowActivity : AppCompatActivity(),CoroutineScope {
             layoutManager = LinearLayoutManager(this@ShowActivity)
 
             launch {
-                val texts = TextDataBase(this@ShowActivity).getTextDao().getAllTexts()
+                val texts = TextDataBase(this@ShowActivity)!!.getTextDao().getAllTexts()
                 adapter = TextAdapter(texts)
             }
         }

@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(),CoroutineScope{
 
             launch {
                     var textData=TextData(entertext)
-                    TextDataBase(this@MainActivity).getTextDao().addText(textData)
+                    TextDataBase(this@MainActivity)!!.getTextDao().addText(textData)
                         Toast.makeText(this@MainActivity,"Text saved",Toast.LENGTH_SHORT).show()
             }
             enter_text.text.clear()

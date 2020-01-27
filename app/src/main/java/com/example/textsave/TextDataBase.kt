@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import org.w3c.dom.Text
 
 
 @Database(
@@ -14,12 +15,20 @@ abstract class TextDataBase :RoomDatabase() {
 
     companion object {
 
-        operator fun invoke(context: Context)=buildatabase(context)
+        private var instance: TextDataBase? = null
+        operator fun invoke(context: Context): TextDataBase {
+            if (instance != null)
+                return instance as TextDataBase
+            else {
+                instance = buildatabase(context)
+                return instance as TextDataBase
+            }
+        }
+
         private fun buildatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             TextDataBase::class.java,
             "textdatabase"
         ).build()
-
     }
 }
